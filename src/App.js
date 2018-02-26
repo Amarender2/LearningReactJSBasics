@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 import Radium, {StyleRoot} from 'radium';
 
@@ -121,13 +121,7 @@ class App extends Component {
 
   render() {
 
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-    }
+    let btnClass = '';
 
     let persons = null;
     if (this.state.showPersons) {
@@ -142,35 +136,31 @@ class App extends Component {
           })
         }
       </div>)
-      style.backgroundColor='red';
-      style[':hover'] = {
-        backgroundColor: 'green',
-        color: 'white'
-      }
+      btnClass = classes.Red;
     }
 
     const classNames= [];
     if(this.state.persons.length < 3) {
-      classNames.push('red');
+      classNames.push(classes.red);
     }
     if(this.state.persons.length < 2) {
-      classNames.push('bold');
+      classNames.push(classes.bold);
     }
     return (
       // class cannot be used 
       // One root element
       // react provides div, h1 (JSX not HTML)
       <StyleRoot>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
+        <div className={classes.App}>
+          <header className={classes.AppHeader}>
+            <img src={logo} className={classes.AppLogo} alt="logo" />
+            <h1 className={classes.AppTitle}>Welcome to React</h1>
           </header>
           <h1>Hi, I am learning React</h1>
           <p className={classNames.join(' ')}>It is really working !!! </p>
           {/* Dont add parantheses, just pass referencem or else function gets executed when diplayed*/}
           {/* This can be ineffcient, react can re-render too often if this way of handler is used, use bind when possible */}
-          <button style={style} onClick={this.togglePersons}>Toggle Names</button>
+          <button className={btnClass} onClick={this.togglePersons}>Toggle Names</button>
           {persons}
         </div>
       </StyleRoot>
