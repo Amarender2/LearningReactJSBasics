@@ -1,0 +1,23 @@
+.AppLogo {
+animation: App-logo-spin infinite 20s linear;
+height: 80px;
+}
+
+.AppHeader {
+background-color: #222;
+height: 150px;
+padding: 20px;
+color: white;
+}
+
+.AppTitle {
+font-size: 2.5em;
+}  
+
+.red {
+color: red;
+}
+
+.bold {
+font-weight: bold;
+}

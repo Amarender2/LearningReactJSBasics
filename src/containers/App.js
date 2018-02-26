@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+//import logo from '../logo.svg';
 import classes from './App.css';
-import Person from './Person/Person';
+// import Person from '../components/Persons/Person/Person';
 import Radium, {StyleRoot} from 'radium';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 // class App extends Component {
 //   // Not available in function components.
@@ -121,22 +123,29 @@ class App extends Component {
 
   render() {
 
-    let btnClass = '';
+    // let btnClass = '';
 
     let persons = null;
     if (this.state.showPersons) {
       persons = (<div>
-        {
-          this.state.persons.map((person, index) => {
-            return <Person name={person.name} age={person.age} 
-                      click={() => this.deletePersonHandler(index)}
-                      key={person.id}
-                      changed={(event) => (this.nameChangedHandler(event, person.id))}/> 
-                      // or use index as key, this is to help react update dom easily
-          })
-        }
-      </div>)
-      btnClass = classes.Red;
+        <Persons 
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}/>
+          </div>)
+          
+      // persons = (<div>
+      //   {
+      //     this.state.persons.map((person, index) => {
+      //       return <Person name={person.name} age={person.age} 
+      //                 click={() => this.deletePersonHandler(index)}
+      //                 key={person.id}
+      //                 changed={(event) => (this.nameChangedHandler(event, person.id))}/> 
+      //                 // or use index as key, this is to help react update dom easily
+      //     })
+      //   }
+      // </div>)
+      // btnClass = classes.Red;
     }
 
     const classNames= [];
@@ -152,7 +161,7 @@ class App extends Component {
       // react provides div, h1 (JSX not HTML)
       <StyleRoot>
         <div className={classes.App}>
-          <header className={classes.AppHeader}>
+          {/* <header className={classes.AppHeader}>
             <img src={logo} className={classes.AppLogo} alt="logo" />
             <h1 className={classes.AppTitle}>Welcome to React</h1>
           </header>
@@ -160,7 +169,9 @@ class App extends Component {
           <p className={classNames.join(' ')}>It is really working !!! </p>
           {/* Dont add parantheses, just pass referencem or else function gets executed when diplayed*/}
           {/* This can be ineffcient, react can re-render too often if this way of handler is used, use bind when possible */}
-          <button className={btnClass} onClick={this.togglePersons}>Toggle Names</button>
+          {/* <button className={btnClass} onClick={this.togglePersons}>Toggle Names</button> */}
+          <Cockpit length={this.state.persons.length} clicked={this.togglePersons} showPersons={this.state.showPersons}/>
+
           {persons}
         </div>
       </StyleRoot>
