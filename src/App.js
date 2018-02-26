@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
+import Radium, {StyleRoot} from 'radium';
 
 // class App extends Component {
 //   // Not available in function components.
@@ -141,38 +142,49 @@ class App extends Component {
           })
         }
       </div>)
-      // <Person click={this.switchNameHandler.bind(this, 'Pranit')} name={this.state.persons[0].name} age={this.state.persons[0].age} />
-      // <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.nameChangedHandler}> Component Children </Person>
-      // <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
+      style.backgroundColor='red';
+      style[':hover'] = {
+        backgroundColor: 'green',
+        color: 'white'
+      }
+    }
+
+    const classNames= [];
+    if(this.state.persons.length < 3) {
+      classNames.push('red');
+    }
+    if(this.state.persons.length < 2) {
+      classNames.push('bold');
     }
     return (
       // class cannot be used 
       // One root element
       // react provides div, h1 (JSX not HTML)
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <h1>Hi, I am learning React</h1>
-        <p>Hi, I am learning React 2</p>
-        {/* Dont add parantheses, just pass referencem or else function gets executed when diplayed*/}
-        {/* This can be ineffcient, react can re-render too often if this way of handler is used, use bind when possible */}
-        <button style={style} onClick={this.togglePersons}>Toggle Names</button>
-        {persons}
-        {/* {
-          this.state.showPersons ?  */}
-
-        {/* : null
-        } */}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Welcome to React</h1>
+          </header>
+          <h1>Hi, I am learning React</h1>
+          <p className={classNames.join(' ')}>It is really working !!! </p>
+          {/* Dont add parantheses, just pass referencem or else function gets executed when diplayed*/}
+          {/* This can be ineffcient, react can re-render too often if this way of handler is used, use bind when possible */}
+          <button style={style} onClick={this.togglePersons}>Toggle Names</button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
     // compiles to this
     // return React.createElement('div', {className : 'App'}, React.createElement('h1', null, React.createElement('h1', null, 'Hi, I am good')), React.createElement('h2', null, 'Hi, I am good2'));
   }
 }
 
-export default App;
+export default Radium(App);
 
 // If state or props change, react anaylzes the code previous and code it will render now
 // and then updates dom where code is updated
+
+// Use radium for pseudo selectors
+// npm i -S radium
+// npm run eject to install config folder and modify webpack.config and webpack.prod
