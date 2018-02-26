@@ -6,7 +6,7 @@ const cockpit = (props) => {
     let btnClass = '';
     
     if(props.showPersons) {
-        btnClass = classes.red;
+        btnClass = classes.Red;
     }
     const classNames= [];
     if(props.length < 3) {
@@ -17,15 +17,13 @@ const cockpit = (props) => {
     }
 
     return (
-        <div>
+        <div className={classes.Cockpit}>
             <header className={classes.AppHeader}>
             <img src={logo} className={classes.AppLogo} alt="logo" />
             <h1 className={classes.AppTitle}>Welcome to React</h1>
             </header>
             <h1>Hi, I am learning React</h1>
             <p className={classNames.join(' ')}>It is really working !!! </p>
-            {/* Dont add parantheses, just pass referencem or else function gets executed when diplayed*/}
-            {/* This can be ineffcient, react can re-render too often if this way of handler is used, use bind when possible */}
             <button className={btnClass} onClick={props.clicked}>Toggle Names</button>
         </div>
     )
