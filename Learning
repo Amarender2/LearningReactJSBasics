@@ -2,3 +2,14 @@ Function - props
 Class - props, state 
 
 App State should be changed as less places as possible called containers
+
+Lifecycle hooks
+
+Component Lifecycle Creation
+constructor(props); -- setupstate, no calls
+componentWillMount(); -- update state and last minute optimizations, no calls
+render();  -- prepare and structure jsx code
+renderChildren();
+componentDidMount(); -- call web if needed, don't update state
+
+
