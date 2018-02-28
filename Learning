@@ -12,4 +12,5 @@ render();  -- prepare and structure jsx code
 renderChildren();
 componentDidMount(); -- call web if needed, don't update state
 
-
+HOCs
+Higher Orders Components

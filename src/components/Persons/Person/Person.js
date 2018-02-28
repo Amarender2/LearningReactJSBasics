@@ -23,23 +23,24 @@ class Person extends React.Component{
     }
 
     render() {
+        const style = {
+            '@media{min-width:500px}' : {
+                width: '450px'
+            }
+        };
+
         console.log('[Person.js] render method');
         return (
             <div className={classes.Person} style={style}>
                 <h1 onClick={this.props.click}>I am {this.props.name} and My age is {this.props.age}</h1>
-                {/* <h3>{this.props.children}</h3> */}
+                <h3>{this.props.children}</h3>
                 <input type='text' onChange={this.props.changed} value={this.props.name}></input>
             </div>
         );
+        
     }
     
 }
-
-const style = {
-    '@media{min-width:500px}' : {
-        width: '450px'
-    }
-};
     
 export default Radium(Person);
 
